@@ -5,7 +5,7 @@ import TextField from "@/common/TextField";
 function SendOTPForm({ phoneNumber, onChange, onSubmit, isLoading }) {
   return (
     <div>
-      <form className="space-y-8" onSubmit={onSubmit}>
+      <form className="space-y-10" onSubmit={onSubmit}>
         <TextField
           label="شماره موبایل"
           name="phoneNumber"
