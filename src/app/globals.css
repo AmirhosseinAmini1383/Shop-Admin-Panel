@@ -64,6 +64,31 @@
   .badge--error {
     @apply bg-rose-600 text-white;
   }
+  .spinner {
+    /* margin: 3.2rem auto 1.6rem; */
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 5px solid rgb(var(--color-primary-900));
+    border-right-color: rgb(var(--color-primary-200));
+    animation: rotate 1s infinite linear;
+  }
+
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid rgb(var(--color-primary-200));
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
 }
 
 html,
