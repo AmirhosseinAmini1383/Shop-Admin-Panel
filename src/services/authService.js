@@ -13,3 +13,7 @@ export function completeProfileApi(data) {
     .post("/user/complete-profile", data)
     .then(({ data }) => data.data);
 }
+
+export function getUserProfileApi() {
+  return http.get("/user/profile").then(({ data }) => data.data);
+}
