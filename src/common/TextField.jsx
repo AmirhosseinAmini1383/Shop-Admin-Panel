@@ -6,7 +6,7 @@ function TextField({ label, name, value, onChange }) {
       </label>
       <input
         autoComplete="off"
-        className="textField__input"
+        className="textField textField__valid"
         type="text"
         name={name}
         id={name}
