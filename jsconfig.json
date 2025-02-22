@@ -7,6 +7,8 @@
       "@/common/*": ["./src/common/*"],
       "@/pages/*": ["./src/app/*"],
       "@/services/*": ["./src/services/*"],
+      "@/providers/*": ["./src/providers/*"],
+      "@/styles/*": ["./src/styles/*"],
       "@/hooks/*": ["./src/hooks/*"],
       "@/public/*": ["./public/*"],
     }
