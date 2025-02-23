@@ -17,3 +17,8 @@ export function completeProfileApi(data) {
 export function getUserProfileApi() {
   return http.get("/user/profile").then(({ data }) => data.data);
 }
+
+
+export function updateProfileApi(data) {
+  return http.patch("/user/update",data).then(({ data }) => data.data);
+}
