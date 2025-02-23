@@ -1,6 +1,7 @@
 "use client";
 import { logoutApi } from "@/services/authService";
-import Link from "next/link";
+import SideBarNavs from "./SideBarNavs";
+import { BiLogOut } from "react-icons/bi";
 
 function SideBar() {
   const logoutHandler = async () => {
@@ -13,40 +14,14 @@ function SideBar() {
 
   return (
     <div>
-      <ul className="flex flex-col space-y-8">
-        <li>
-          <Link
-            className="block transition-all duration-200 hover:text-primary-900"
-            href="/"
-          >
-            صفحه اصلی
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="block transition-all duration-200 hover:text-primary-900"
-            href="/profile"
-          >
-            داشبورد
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="block transition-all duration-200 hover:text-primary-900"
-            href="/profile/me"
-          >
-            صفحه کاربری
-          </Link>
-        </li>
-        <li>
-          <button
-            className="w-full text-right transition-all duration-200 hover:text-error"
-            onClick={logoutHandler}
-          >
-            خروج از حساب کاربری
-          </button>
-        </li>
-      </ul>
+      <SideBarNavs />
+      <div
+        onClick={logoutHandler}
+        className="flex items-center gap-x-2 rounded-2xl font-medium transition-all duration-200 text-secondary-700 py-3 px-4 hover:text-red-400 cursor-pointer"
+      >
+        <BiLogOut  className="ml-4 h-5 w-5" />
+        <span>خروج</span>
+      </div>
     </div>
   );
 }
