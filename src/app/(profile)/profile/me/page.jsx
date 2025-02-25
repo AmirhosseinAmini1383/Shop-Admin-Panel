@@ -42,7 +42,7 @@ function MePage() {
   };
   return (
     <div className="max-w-sm">
-      <h1 className="mt-5 mb-10 font-black text-xl">اطلاعات کاربری</h1>
+      <h1 className="mt-5 mb-10 font-bold text-xl">اطلاعات کاربری</h1>
       <form className="space-y-8" onSubmit={updateFormHandler}>
         {Object.keys(includeObject(user, includesKey)).map((key) => {
           return (
