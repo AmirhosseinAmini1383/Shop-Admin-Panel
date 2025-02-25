@@ -3,7 +3,7 @@ import SpinnerMini from "@/common/SpinnerMini";
 import OTPInput from "react-otp-input";
 import { CiEdit } from "react-icons/ci";
 import { HiArrowRight, HiRefresh } from "react-icons/hi";
-import { toPersianDigits } from "@/utils/numberFormatter";
+import { toPersianNumbers } from "@/utils/numberFormatter";
 
 function CheckOTPForm({
   onSubmit,
@@ -48,7 +48,7 @@ function CheckOTPForm({
         />
         <div className="mt-4 mb-10 text-secondary-500 text-sm">
           {time > 0 ? (
-            <p>{toPersianDigits(time)} ثانیه تا ارسال مجدد کد</p>
+            <p>{toPersianNumbers(time)} ثانیه تا ارسال مجدد کد</p>
           ) : (
             <button onClick={onReSendOtp} className="flex items-center gap-x-1">
               <span>ارسال مجدد کد تایید</span>
