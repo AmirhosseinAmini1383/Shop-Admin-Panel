@@ -1,13 +1,11 @@
 import { getCategoriesApi } from "@/services/categoryService";
 import { getProductsApi } from "@/services/productService";
 import { toPersianNumbersWithComma } from "@/utils/numberFormatter";
-import CategorySidebar from "./[productSlug]/CategorySidebar";
+import CategorySidebar from "./CategorySidebar";
 
 async function Products() {
   const { products } = await getProductsApi();
   const { categories } = await getCategoriesApi();
-  console.log({ products });
-  console.log({ categories });
 
   return (
     <div>

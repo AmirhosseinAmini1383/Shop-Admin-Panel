@@ -4,16 +4,21 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
 
 function CategorySidebar({ categories }) {
-  const [selectedCategories, setSelectedCategories] = useState([]);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [selectedCategories, setSelectedCategories] = useState(
+    searchParams.get("category")?.split(",") || []
+  );
 
   const createQueryString = useCallback(
     (name, value) => {
       const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-
+      if (value.length > 0) {
+        params.set(name, value);
+      } else {
+        params.delete(name);
+      }
       return params.toString();
     },
     [searchParams]
@@ -21,19 +26,14 @@ function CategorySidebar({ categories }) {
 
   const categoryHandler = (e) => {
     const value = e.target.value;
+    let categories = [];
     if (selectedCategories.includes(value)) {
-      const categories = selectedCategories.filter((c) => c !== value);
-      setSelectedCategories(categories);
-      router.push(`${pathname}?${createQueryString("category", categories)}`);
+      categories = selectedCategories.filter((c) => c !== value);
     } else {
-      setSelectedCategories([...selectedCategories, value]);
-      router.push(
-        `${pathname}?${createQueryString("category", [
-          ...selectedCategories,
-          value,
-        ])}`
-      );
+      categories = [...selectedCategories, value];
     }
+    setSelectedCategories(categories);
+    router.push(`${pathname}?${createQueryString("category", categories)}`);
   };
   return (
     <div className="col-span-1">
