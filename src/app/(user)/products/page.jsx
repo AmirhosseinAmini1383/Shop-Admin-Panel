@@ -17,16 +17,22 @@ async function Products({ searchParams }) {
   const categoryPromise = getCategoriesApi();
   const productsPromise = getProductsApi(query);
 
-  const { categories } = await categoryPromise;
+  const [{ products }, { categories }] = await Promise.all([
+    productsPromise,
+    categoryPromise,
+  ]);
 
+  // const { categories } = await categoryPromise;
   return (
     <div>
       <h1 className="mt-5 mb-10 font-bold text-xl">صفحه محصولات</h1>
       <div className="grid grid-cols-4">
         <CategorySidebar categories={categories} />
-        <Suspense fallback={<SpinnerMini className="mx-auto" />}>
+        <ProductsList products={products} />
+
+        {/* <Suspense fallback={<SpinnerMini className="mx-auto" />}>
           <ProductsList promise={productsPromise} />
-        </Suspense>
+        </Suspense> */}
       </div>
     </div>
   );

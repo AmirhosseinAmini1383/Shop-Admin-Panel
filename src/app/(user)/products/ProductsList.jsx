@@ -1,7 +1,8 @@
 import { toPersianNumbersWithComma } from "@/utils/numberFormatter";
 
-async function ProductsList({ promise }) {
-  const { products } = await promise;
+async function ProductsList({ products }) {
+  //   const { products } = await promise;
+
   return (
     <div className="col-span-3 grid grid-cols-3 gap-y-4 gap-x-6">
       {products.map((product) => {
