@@ -1,5 +1,5 @@
 import http from "./httpService";
 
-export function getProductsApi() {
-  return http.get("/product/list").then(({ data }) => data.data);
+export function getProductsApi(query) {
+  return http.get(`/product/list?${query}`).then(({ data }) => data.data);
 }

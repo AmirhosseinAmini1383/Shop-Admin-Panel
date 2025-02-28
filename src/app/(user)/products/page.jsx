@@ -2,9 +2,11 @@ import { getCategoriesApi } from "@/services/categoryService";
 import { getProductsApi } from "@/services/productService";
 import { toPersianNumbersWithComma } from "@/utils/numberFormatter";
 import CategorySidebar from "./CategorySidebar";
+import queryString from "query-string";
 
-async function Products() {
-  const { products } = await getProductsApi();
+async function Products({ searchParams }) {
+  const query = queryString.stringify(await searchParams);
+  const { products } = await getProductsApi(query);
   const { categories } = await getCategoriesApi();
 
   return (
