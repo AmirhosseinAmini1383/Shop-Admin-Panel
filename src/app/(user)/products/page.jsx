@@ -6,8 +6,8 @@ import { Suspense } from "react";
 import SpinnerMini from "@/common/SpinnerMini";
 import ProductsList from "./ProductsList";
 
-// * eq to {cache : "no-store"} or SSR in pages Dir :) * used this method before Next 15.
-// export const dynamic = "force-dynamic";
+// * eq to {cache : "no-store"} or SSR in pages Dir :)
+export const dynamic = "force-dynamic";
 
 async function Products({ searchParams }) {
   const query = queryString.stringify(await searchParams);
