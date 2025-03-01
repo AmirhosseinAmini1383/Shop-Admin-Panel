@@ -2,8 +2,8 @@ import { getCategoriesApi } from "@/services/categoryService";
 import { getProductsApi } from "@/services/productService";
 import CategorySidebar from "./CategorySidebar";
 import queryString from "query-string";
-import { Suspense } from "react";
-import SpinnerMini from "@/common/SpinnerMini";
+// import { Suspense } from "react";
+// import SpinnerMini from "@/common/SpinnerMini";
 import ProductsList from "./ProductsList";
 
 // * eq to {cache : "no-store"} or SSR in pages Dir :)

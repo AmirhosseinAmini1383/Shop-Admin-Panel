@@ -1,4 +1,7 @@
+import Button from "@/common/Button";
 import { toPersianNumbersWithComma } from "@/utils/numberFormatter";
+import toLocalDateShort from "@/utils/toLocalDateShort";
+import Link from "next/link";
 
 async function ProductsList({ products }) {
   //   const { products } = await promise;
@@ -8,18 +11,33 @@ async function ProductsList({ products }) {
       {products.map((product) => {
         return (
           <div
-            className="col-span-1 border rounded-xl shadow-md p-4 space-y-2"
+            className="col-span-1 border rounded-xl shadow-md p-4"
             key={product._id}
           >
-            <p className="font-bold">{product.title}</p>
-            <p>
-              <span>قیمت:</span>
-              <span>{toPersianNumbersWithComma(product.offPrice)}</span>
-            </p>
-            <p>
-              <span>دسته بندی:</span>
-              <span>{product.category.title}</span>
-            </p>
+            <p className="font-bold text-xl mb-4">{product.title}</p>
+            <div className="mb-4">
+              <span>تاریخ : </span>
+              <span className="font-medium">
+                {toLocalDateShort(product.createdAt)}
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <p>
+                <span>{toPersianNumbersWithComma(product.offPrice)}</span>
+                <span> تومان</span>
+              </p>
+              <p>
+                <span>{product.category.title}</span>
+              </p>
+            </div>
+            <Button variant="primary" className="w-full mt-6">
+              <Link
+                className="text-secondary-100 font-bold"
+                href={`products/${product.slug}`}
+              >
+                مشاهده محصول
+              </Link>
+            </Button>
           </div>
         );
       })}
