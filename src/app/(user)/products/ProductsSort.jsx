@@ -1,7 +1,7 @@
 "use client";
 import RadioInput from "@/common/RadioInput";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState } from "react";
+import useCreateQueryStringToUrl from "@/hooks/useCreateQueryStringToUrl";
+import { useState } from "react";
 
 const sortOptions = [
   {
@@ -22,22 +22,9 @@ const sortOptions = [
 ];
 
 function ProductsSort() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const { pathname, router, searchParams, createQueryString } =
+    useCreateQueryStringToUrl();
   const [sort, setSort] = useState(searchParams.get("sort") || "");
-  const createQueryString = useCallback(
-    (name, value) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (value.length > 0) {
-        params.set(name, value);
-      } else {
-        params.delete(name);
-      }
-      return params.toString();
-    },
-    [searchParams]
-  );
 
   const sortHandler = (e) => {
     const value = e.target.value;

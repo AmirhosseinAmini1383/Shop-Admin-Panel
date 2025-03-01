@@ -1,27 +1,13 @@
 "use client";
 import CheckBox from "@/common/CheckBox";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState } from "react";
+import useCreateQueryStringToUrl from "@/hooks/useCreateQueryStringToUrl";
+import { useState } from "react";
 
 function ProductsFilter({ categories }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const { pathname, router, searchParams, createQueryString } =
+    useCreateQueryStringToUrl();
   const [selectedCategories, setSelectedCategories] = useState(
     searchParams.get("category")?.split(",") || []
-  );
-
-  const createQueryString = useCallback(
-    (name, value) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (value.length > 0) {
-        params.set(name, value);
-      } else {
-        params.delete(name);
-      }
-      return params.toString();
-    },
-    [searchParams]
   );
 
   const categoryHandler = (e) => {

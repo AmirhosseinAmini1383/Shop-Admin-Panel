@@ -32,7 +32,7 @@ async function ProductsList({ products }) {
             </div>
             <Button variant="primary" className="w-full mt-6">
               <Link
-                className="text-secondary-100 font-bold"
+                className="text-white font-bold"
                 href={`products/${product.slug}`}
               >
                 مشاهده محصول
