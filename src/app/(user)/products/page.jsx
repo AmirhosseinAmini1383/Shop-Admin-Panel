@@ -6,6 +6,9 @@ import { Suspense } from "react";
 import SpinnerMini from "@/common/SpinnerMini";
 import ProductsList from "./ProductsList";
 
+// * eq to {cache : "no-store"} or SSR in pages Dir :)
+export const dynamic = "force-dynamic";
+
 async function Products({ searchParams }) {
   const query = queryString.stringify(await searchParams);
   // const { products } = await getProductsApi(query);
