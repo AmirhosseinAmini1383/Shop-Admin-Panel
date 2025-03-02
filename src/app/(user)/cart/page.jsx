@@ -4,6 +4,7 @@ import Loading from "@/common/Loading";
 import { useGetUser } from "@/hooks/useAuth";
 import Link from "next/link";
 import CartItem from "./CartItem";
+import CartSummery from "./CartSummery";
 
 function CartPage() {
   const { user, cart, isLoading } = useGetUser();
@@ -38,7 +39,9 @@ function CartPage() {
             return <CartItem key={item._id} cartItem={item} />;
           })}
       </div>
-      <div className="col-span-1">cart Summary</div>
+      <div className="col-span-1">
+        <CartSummery payDetail={cart.payDetail} />
+      </div>
     </div>
   );
 }
