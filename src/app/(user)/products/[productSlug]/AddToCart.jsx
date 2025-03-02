@@ -6,6 +6,7 @@ import { useGetUser } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useAddToCart } from "./useCart";
+import Link from "next/link";
 
 function AddToCart({ product }) {
   const router = useRouter();
@@ -26,17 +27,25 @@ function AddToCart({ product }) {
     }
   };
 
+  const isInCart = (user, product) => {
+    if (!user) return false;
+    return user.cart?.products.some((p) => p.productId === product._id);
+  };
+
   return (
     <div>
-      {isPending ? (
-        <Button className="btn btn--primary w-64">
+      {isInCart(user, product) ? (
+        <Link href="/cart">
+          <button className="text-center text-primary-900 font-bold border border-primary-900 px-4 py-3 rounded-2xl w-full">
+            ادامه فرایند خرید
+          </button>
+        </Link>
+      ) : isPending ? (
+        <Button className="btn btn--primary w-full">
           <SpinnerMini className="mx-auto" />
         </Button>
       ) : (
-        <Button
-          onClick={addToCartProductHandler}
-          className="btn btn--primary w-64"
-        >
+        <Button onClick={addToCartProductHandler} className="w-full">
           اضافه کردن به سبد خرید
         </Button>
       )}
