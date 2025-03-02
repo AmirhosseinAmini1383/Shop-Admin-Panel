@@ -7,6 +7,7 @@ import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/numberFormatter";
+import AddToCart from "./AddToCart";
 
 export const dynamic = "force-static"; // SSG or {cache : "force-cache"}
 export const dynamicParams = false;
@@ -42,9 +43,7 @@ async function page({ params }) {
           </div>
         </div>
       )}
-      <div>
-        <Button className="btn btn--primary">اضافه کردن به سبد خرید</Button>
-      </div>
+      <AddToCart product={product} />
     </div>
   );
 }
