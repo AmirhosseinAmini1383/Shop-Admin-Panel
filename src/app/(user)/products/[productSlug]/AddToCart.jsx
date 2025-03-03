@@ -5,7 +5,7 @@ import SpinnerMini from "@/common/SpinnerMini";
 import { useGetUser } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { useAddToCart } from "./useCart";
+import { useAddToCart } from "@/hooks/useCart";
 import Link from "next/link";
 
 function AddToCart({ product }) {
