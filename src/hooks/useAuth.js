@@ -8,6 +8,6 @@ export const useGetUser = () => {
     retry: false,
     refetchOnWindowFocus: true,
   });
-  const { user, cart } = data || {};
-  return { user, cart, error, isLoading };
+  const { user, cart, payments } = data || {};
+  return { user, cart, payments, error, isLoading };
 };

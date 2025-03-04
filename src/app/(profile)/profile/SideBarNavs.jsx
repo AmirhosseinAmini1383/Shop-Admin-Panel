@@ -2,9 +2,8 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { HiOutlineHome } from "react-icons/hi";
-import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOutlineSpaceDashboard, MdPayment } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
-
 
 const sidebarNavs = [
   {
@@ -21,9 +20,15 @@ const sidebarNavs = [
   },
   {
     id: 3,
-    title: "صفحه کاربری",
+    title: "اطلاعات کاربری",
     icon: <CgProfile className="w-5 h-5" />,
     href: "/profile/me",
+  },
+  {
+    id: 4,
+    title: "سفارشات",
+    icon: <MdPayment className="w-5 h-5" />,
+    href: "/profile/payments",
   },
 ];
 function SideBarNavs() {
