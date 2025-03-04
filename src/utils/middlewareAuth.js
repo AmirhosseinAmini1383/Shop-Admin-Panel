@@ -1,14 +1,16 @@
+import { toStringCookies } from "./toStringCookies";
+
 export async function middlewareAuth(request) {
-  let strCookie = "";
-  request.cookies
-    .getAll()
-    .forEach((item) => (strCookie += `${item?.name}=${item?.value}; `));
+  // let strCookie = "";
+  // request.cookies
+  //   .getAll()
+  //   .forEach((item) => (strCookie += `${item?.name}=${item?.value}; `));
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/profile`, {
     method: "GET",
     credentials: "include",
     headers: {
-      Cookie: strCookie,
+      Cookie: toStringCookies(request.cookies),
     },
   });
   const { data } = await res.json();

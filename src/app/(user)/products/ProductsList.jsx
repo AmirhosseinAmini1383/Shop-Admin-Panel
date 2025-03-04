@@ -2,6 +2,7 @@ import { toPersianNumbersWithComma } from "@/utils/numberFormatter";
 import toLocalDateShort from "@/utils/toLocalDateShort";
 import Link from "next/link";
 import AddToCart from "./[productSlug]/AddToCart";
+import LikeProduct from "./LikeProduct";
 
 async function ProductsList({ products }) {
   //   const { products } = await promise;
@@ -31,13 +32,16 @@ async function ProductsList({ products }) {
                   <span>{product.category.title}</span>
                 </p>
               </div>
-              <div className="flex flex-col gap-y-4 mt-6">
-                <Link
-                  className="text-primary-900 font-bold"
-                  href={`products/${product.slug}`}
-                >
-                  مشاهده محصول
-                </Link>
+              <div className="flex flex-col gap-y-6 mt-6">
+                <div className="flex items-center justify-between">
+                  <Link
+                    className="text-primary-900 font-bold"
+                    href={`products/${product.slug}`}
+                  >
+                    مشاهده محصول
+                  </Link>
+                  <LikeProduct product={product} />
+                </div>
                 <AddToCart product={product} />
               </div>
             </div>

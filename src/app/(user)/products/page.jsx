@@ -5,17 +5,22 @@ import queryString from "query-string";
 // import { Suspense } from "react";
 // import SpinnerMini from "@/common/SpinnerMini";
 import ProductsList from "./ProductsList";
+import { cookies } from "next/headers";
+import { toStringCookies } from "@/utils/toStringCookies";
 
 // * eq to {cache : "no-store"} or SSR in pages Dir :)
 export const dynamic = "force-dynamic";
 
 async function Products({ searchParams }) {
   const query = queryString.stringify(await searchParams);
+  const cookieStore = cookies();
+  const strCookie = toStringCookies(cookieStore);
+
   // const { products } = await getProductsApi(query);
   // const { categories } = await getCategoriesApi();
 
   const categoryPromise = getCategoriesApi();
-  const productsPromise = getProductsApi(query);
+  const productsPromise = getProductsApi(query, strCookie);
 
   const [{ products }, { categories }] = await Promise.all([
     productsPromise,
