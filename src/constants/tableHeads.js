@@ -59,3 +59,38 @@ export const userListTHeads = [
     label: "مشاهده",
   },
 ];
+
+export const productsListTHeads = [
+  {
+    id: 1,
+    label: "#",
+  },
+  {
+    id: 2,
+    label: "عنوان",
+  },
+  {
+    id: 3,
+    label: "دسته بندی",
+  },
+  {
+    id: 4,
+    label: "قیمت",
+  },
+  {
+    id: 5,
+    label: "تخفیف",
+  },
+  {
+    id: 6,
+    label: "قیمت نهایی",
+  },
+  {
+    id: 7,
+    label: "موجودی در انبار",
+  },
+  {
+    id: 8,
+    label: "مشاهده",
+  },
+];

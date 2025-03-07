@@ -1,4 +1,3 @@
-import Button from "@/common/Button";
 import {
   getOneProductBySlugApi,
   getProductsApi,
