@@ -1,4 +1,4 @@
-import { getUserProfileApi } from "@/services/authService";
+import { getAllUsersApi, getUserProfileApi } from "@/services/authService";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetUser = () => {
@@ -10,4 +10,15 @@ export const useGetUser = () => {
   });
   const { user, cart, payments } = data || {};
   return { user, cart, payments, error, isLoading };
+};
+
+export const useGetAllUsers = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["get-users"],
+    queryFn: getAllUsersApi,
+    retry: false,
+    refetchOnWindowFocus: true,
+  });
+  const { users } = data || {};
+  return { users, isLoading };
 };

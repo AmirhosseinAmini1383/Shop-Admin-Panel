@@ -25,3 +25,9 @@ export function updateProfileApi(data) {
 export function logoutApi() {
   return http.post("/user/logout");
 }
+
+// admin related fetchs:
+
+export function getAllUsersApi() {
+  return http.get("/admin/user/list").then(({ data }) => data.data);
+}

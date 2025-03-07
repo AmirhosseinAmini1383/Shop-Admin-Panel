@@ -1,9 +1,14 @@
 import classNames from "classnames";
 import Link from "next/link";
+import { HiOutlineHome, HiOutlineUsers } from "react-icons/hi";
+import {
+  MdOutlineCategory,
+  MdOutlineSpaceDashboard,
+  MdPayment,
+} from "react-icons/md";
+import { CgProductHunt } from "react-icons/cg";
+import { RiCoupon5Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
-import { HiOutlineHome } from "react-icons/hi";
-import { MdOutlineSpaceDashboard, MdPayment } from "react-icons/md";
-import { CgProfile } from "react-icons/cg";
 
 const sidebarNavs = [
   {
@@ -16,21 +21,40 @@ const sidebarNavs = [
     id: 2,
     title: "داشبورد",
     icon: <MdOutlineSpaceDashboard className="w-5 h-5" />,
-    href: "/profile",
+    href: "/admin",
   },
   {
     id: 3,
-    title: "اطلاعات کاربری",
-    icon: <CgProfile className="w-5 h-5" />,
-    href: "/profile/me",
+    title: "کاربران",
+    icon: <HiOutlineUsers className="w-5 h-5" />,
+    href: "/admin/users",
   },
   {
     id: 4,
+    title: "محصولات",
+    icon: <CgProductHunt className="w-5 h-5" />,
+    href: "/admin/products",
+  },
+  {
+    id: 5,
+    title: "دسته بندی",
+    icon: <MdOutlineCategory className="w-5 h-5" />,
+    href: "/admin/categories",
+  },
+  {
+    id: 6,
     title: "سفارشات",
     icon: <MdPayment className="w-5 h-5" />,
-    href: "/profile/payments",
+    href: "/admin/payments",
+  },
+  {
+    id: 7,
+    title: "کد تخفیف",
+    icon: <RiCoupon5Line className="w-5 h-5" />,
+    href: "/admin/coupons",
   },
 ];
+
 function SideBarNavs() {
   const pathname = usePathname();
 
