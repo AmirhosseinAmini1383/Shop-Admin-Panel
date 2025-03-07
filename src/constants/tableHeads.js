@@ -28,3 +28,34 @@ export const userPaymentTHeads = [
     label: "وضعیت",
   },
 ];
+
+export const userListTHeads = [
+  {
+    id: 1,
+    label: "#",
+  },
+  {
+    id: 2,
+    label: "نام",
+  },
+  {
+    id: 3,
+    label: "ایمیل",
+  },
+  {
+    id: 4,
+    label: "شماره موبایل",
+  },
+  {
+    id: 5,
+    label: "محصولات",
+  },
+  {
+    id: 6,
+    label: "تاریخ پیوستن",
+  },
+  {
+    id: 7,
+    label: "مشاهده",
+  },
+];
