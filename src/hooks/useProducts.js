@@ -1,5 +1,5 @@
-import { getProductsApi } from "@/services/productService";
-import { useQuery } from "@tanstack/react-query";
+import { addProductApi, getProductsApi } from "@/services/productService";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetProducts = () =>
   useQuery({
@@ -8,3 +8,5 @@ export const useGetProducts = () =>
     retry: false,
     refetchOnWindowFocus: true,
   });
+
+export const useAddProduct = () => useMutation({ mutationFn: addProductApi });
