@@ -5,7 +5,8 @@ import {
 } from "@/utils/numberFormatter";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HiOutlineEye } from "react-icons/hi";
+import { HiOutlineEye, HiOutlineTrash } from "react-icons/hi";
+import { RiEdit2Line } from "react-icons/ri";
 
 function ProductsListTable({ products }) {
   const pathName = usePathname();
@@ -48,9 +49,17 @@ function ProductsListTable({ products }) {
                       {toPersianNumbers(product.countInStock)}
                     </td>
                     <td className="table__td">
-                      <Link href={`${pathName}/${product._id}`}>
-                        <HiOutlineEye className="w-5 h-5 text-primary-900" />
-                      </Link>
+                      <div className="flex items-center gap-x-3">
+                        <Link href={`${pathName}/${product._id}`}>
+                          <HiOutlineEye className="w-5 h-5 text-primary-900" />
+                        </Link>
+                        <button>
+                          <HiOutlineTrash className="w-5 h-5 text-error" />
+                        </button>
+                        <Link href={`${pathName}/edit/${product._id}`}>
+                          <RiEdit2Line className="w-5 h-5 text-secondary-700" />
+                        </Link>
+                      </div>
                     </td>
                   </tr>
                 );
