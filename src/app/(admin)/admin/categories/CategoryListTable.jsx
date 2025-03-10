@@ -33,7 +33,9 @@ function CategoryListTable({ categories }) {
                     <td className="table__td whitespace-nowrap font-medium">
                       {category.title}
                     </td>
-                    <td className="table__td">{category.description}</td>
+                    <td className="table__td max-w-[500px] whitespace-normal">
+                      {category.description}
+                    </td>
                     <td className="table__td">{category.englishTitle}</td>
                     <td className="table__td">
                       <span className="badge badge--secondary">
