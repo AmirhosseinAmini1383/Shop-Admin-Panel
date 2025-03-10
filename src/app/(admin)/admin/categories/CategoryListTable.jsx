@@ -25,8 +25,6 @@ function CategoryListTable({ categories }) {
             </thead>
             <tbody>
               {categories.map((category, index) => {
-                console.log(category);
-
                 return (
                   <tr key={category._id}>
                     <td className="table__td">{toPersianNumbers(index + 1)}</td>
