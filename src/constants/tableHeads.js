@@ -94,3 +94,30 @@ export const productsListTHeads = [
     label: "عملیات",
   },
 ];
+
+export const categoryListTHeads = [
+  {
+    id: 1,
+    label: "#",
+  },
+  {
+    id: 2,
+    label: "عنوان",
+  },
+  {
+    id: 3,
+    label: "توضیحات",
+  },
+  {
+    id: 4,
+    label: "عنوان انگلیسی",
+  },
+  {
+    id: 5,
+    label: "نوع",
+  },
+  {
+    id: 6,
+    label: "عملیات",
+  },
+];
