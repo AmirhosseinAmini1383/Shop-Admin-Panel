@@ -160,3 +160,42 @@ export const adminPaymentListTHeads = [
     label: "مشاهده",
   },
 ];
+
+export const couponListTableTHeads = [
+  {
+    id: 1,
+    label: "#",
+  },
+  {
+    id: 2,
+    label: "کد",
+  },
+  {
+    id: 3,
+    label: "نوع",
+  },
+  {
+    id: 4,
+    label: "مقدار",
+  },
+  {
+    id: 6,
+    label: "شامل محصولات",
+  },
+  {
+    id: 7,
+    label: "مقدار مصرفی",
+  },
+  {
+    id: 8,
+    label: "ظرفیت",
+  },
+  {
+    id: 9,
+    label: "تاریخ انقضا",
+  },
+  {
+    id: 10,
+    label: "عملیات",
+  },
+];
