@@ -17,4 +17,9 @@ export function updateCategoryApi({ id, data }) {
     .patch(`/admin/category/update/${id}`, data)
     .then(({ data }) => data.data);
 }
- 
+
+export function removeCategoryApi(id) {
+  return http
+    .delete(`/admin/category/remove/${id}`)
+    .then(({ data }) => data.data);
+}

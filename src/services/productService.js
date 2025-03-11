@@ -38,3 +38,9 @@ export function updateProductApi({ productId, data }) {
     .patch(`/admin/product/update/${productId}`, data)
     .then(({ data }) => data.data);
 }
+
+export function deleteProductApi(id) {
+  return http
+    .delete(`/admin/product/remove/${id}`)
+    .then(({ data }) => data.data);
+}

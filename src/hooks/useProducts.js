@@ -1,5 +1,6 @@
 import {
   addProductApi,
+  deleteProductApi,
   getOneProductByIdApi,
   getProductsApi,
   updateProductApi,
@@ -25,3 +26,6 @@ export const useGetProductById = (id) =>
     queryFn: () => getOneProductByIdApi(id),
     retry: false,
   });
+
+export const useDeleteProduct = () =>
+  useMutation({ mutationFn: deleteProductApi });

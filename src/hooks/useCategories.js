@@ -2,6 +2,7 @@ import {
   AddNewCategoryApi,
   getCategoriesApi,
   getCategoryByIdApi,
+  removeCategoryApi,
   updateCategoryApi,
 } from "@/services/categoryService";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -27,3 +28,6 @@ export const useGetCategoryById = (id) => {
 
 export const useUpdateCategory = () =>
   useMutation({ mutationFn: updateCategoryApi });
+
+export const useRemoveCategory = () =>
+  useMutation({ mutationFn: removeCategoryApi });

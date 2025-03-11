@@ -50,6 +50,15 @@
   .btn--primary {
     @apply px-4 py-3 bg-primary-900 text-white hover:bg-primary-800 shadow-lg shadow-primary-300;
   }
+  .btn--secondary {
+    @apply px-4 py-3 bg-secondary-600 text-secondary-100;
+  }
+  .btn--outline {
+    @apply px-4 py-3 border border-secondary-300 text-secondary-400;
+  }
+  .btn--danger {
+    @apply px-4 py-3 border border-rose-700 text-rose-700;
+  }
   .table__th {
     @apply border-b-2 border-b-gray-500 font-medium p-3 pr-8 pb-3 text-right;
   }
