@@ -1,4 +1,8 @@
-import { addNewCouponApi, getAllCouponsApi } from "@/services/couponService";
+import {
+  addNewCouponApi,
+  getAllCouponsApi,
+  getOneCouponByIdApi,
+} from "@/services/couponService";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetCoupons = () =>
@@ -11,3 +15,11 @@ export const useGetCoupons = () =>
 
 export const useAddNewCoupon = () =>
   useMutation({ mutationFn: addNewCouponApi });
+
+export const useGetOneCouponById = (id) =>
+  useQuery({
+    queryKey: ["get-coupon", id],
+    queryFn: () => getOneCouponByIdApi(id),
+    retry: false,
+    refetchOnWindowFocus: true,
+  });

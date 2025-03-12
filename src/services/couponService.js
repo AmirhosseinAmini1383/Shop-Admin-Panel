@@ -7,3 +7,7 @@ export function getAllCouponsApi() {
 export function addNewCouponApi(data) {
   return http.post("/admin/coupon/add", data).then(({ data }) => data.data);
 }
+
+export function getOneCouponByIdApi(id) {
+  return http.get(`/admin/coupon/${id}`).then(({ data }) => data.data);
+}
