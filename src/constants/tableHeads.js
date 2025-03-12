@@ -179,23 +179,23 @@ export const couponListTableTHeads = [
     label: "مقدار",
   },
   {
-    id: 6,
+    id: 5,
     label: "شامل محصولات",
   },
   {
-    id: 7,
+    id: 6,
     label: "مقدار مصرفی",
   },
   {
-    id: 8,
+    id: 7,
     label: "ظرفیت",
   },
   {
-    id: 9,
+    id: 8,
     label: "تاریخ انقضا",
   },
   {
-    id: 10,
+    id: 9,
     label: "عملیات",
   },
 ];

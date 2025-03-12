@@ -1,3 +1,5 @@
+"use client";
+
 import ConfirmDelete from "@/common/ConfirmDelete";
 import Modal from "@/common/Modal";
 import { categoryListTHeads } from "@/constants/tableHeads";
@@ -5,15 +7,15 @@ import { useRemoveCategory } from "@/hooks/useCategories";
 import { toPersianNumbers } from "@/utils/numberFormatter";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { HiOutlineEye, HiOutlineTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 
 function CategoryListTable({ categories }) {
-  const pathName = usePathname();
   const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
   const queryClient = useQueryClient();
   const { mutateAsync: removeCategory, isPending } = useRemoveCategory();
 
@@ -25,6 +27,11 @@ function CategoryListTable({ categories }) {
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
+  };
+
+  const handleDeleteClick = (category) => {
+    setSelectedProduct(category);
+    setOpen(true);
   };
 
   return (
@@ -62,10 +69,10 @@ function CategoryListTable({ categories }) {
                     </td>
                     <td className="table__td">
                       <div className="flex items-center gap-x-3">
-                        <Link href={`${pathName}/${category._id}`}>
+                        <Link href={`/admin/categories/${category._id}`}>
                           <HiOutlineEye className="w-5 h-5 text-primary-900" />
                         </Link>
-                        <button onClick={() => setOpen(true)}>
+                        <button onClick={() => handleDeleteClick(category)}>
                           <HiOutlineTrash className="w-5 h-5 text-error" />
                         </button>
                         <Modal
@@ -73,16 +80,23 @@ function CategoryListTable({ categories }) {
                           onClose={() => setOpen(false)}
                           title="حذف دسته بندی"
                         >
-                          <ConfirmDelete
-                            onClose={() => setOpen(false)}
-                            resourceName={category.title}
-                            onConfirm={() =>
-                              removeCategoryHandler(category._id)
-                            }
-                            disabled={isPending}
-                          />
+                          {selectedProduct && (
+                            <ConfirmDelete
+                              resourceName={selectedProduct.title}
+                              onConfirm={() => {
+                                removeCategoryHandler(selectedProduct._id);
+                                setOpen(false);
+                                setSelectedProduct(null);
+                              }}
+                              onClose={() => {
+                                setOpen(false);
+                                setSelectedProduct(null);
+                              }}
+                              disabled={isPending}
+                            />
+                          )}
                         </Modal>
-                        <Link href={`${pathName}/edit/${category._id}`}>
+                        <Link href={`/admin/categories/edit/${category._id}`}>
                           <RiEdit2Line className="w-5 h-5 text-secondary-700" />
                         </Link>
                       </div>

@@ -24,7 +24,7 @@ function ConfirmDelete({ resourceName, onClose, disabled, onConfirm }) {
           }}
           disabled={disabled}
           variant="danger"
-          className="flex gap-x-2 justify-center items-center flex-1 btn btn--danger"
+          className="flex gap-x-2 justify-center items-center flex-1 btn btn--danger disabled:opacity-30"
         >
           <span>حذف</span>
           <HiOutlineTrash className="w-5 h-5" />

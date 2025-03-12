@@ -4,6 +4,7 @@ import ProductForm from "@/components/ProductForm";
 import { useGetCategories } from "@/hooks/useCategories";
 import { useGetProductById, useUpdateProduct } from "@/hooks/useProducts";
 import { includeObject } from "@/utils/objectUtils";
+import { useQueryClient } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -23,6 +24,7 @@ const includesProductKey = [
 function page() {
   const { id } = useParams();
   const router = useRouter();
+  const queryClient = useQueryClient();
   const { data: productData, isLoading } = useGetProductById(id);
   const { product } = productData || {};
   const { data: categoryData } = useGetCategories();
@@ -47,6 +49,7 @@ function page() {
           category: selectedCategory._id,
         },
       });
+      queryClient.invalidateQueries({ queryKey: ["get-product", product._id] });
       toast.success(message);
       router.push("/admin/products");
     } catch (error) {

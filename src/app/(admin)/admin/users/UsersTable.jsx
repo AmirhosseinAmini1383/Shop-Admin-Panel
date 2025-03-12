@@ -2,11 +2,9 @@ import { userListTHeads } from "@/constants/tableHeads";
 import { toPersianNumbers } from "@/utils/numberFormatter";
 import toLocalDateShort from "@/utils/toLocalDateShort";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { HiCheckCircle, HiOutlineEye } from "react-icons/hi";
 
 function UsersTable({ users }) {
-  const pathName = usePathname();
   return (
     <>
       {users.length > 0 ? (
@@ -62,7 +60,7 @@ function UsersTable({ users }) {
                       {toLocalDateShort(user.createdAt)}
                     </td>
                     <td className="table__td">
-                      <Link href={`${pathName}/${user._id}`}>
+                      <Link href={`/admin/users/${user._id}`}>
                         <HiOutlineEye className="w-5 h-5 text-primary-900" />
                       </Link>
                     </td>

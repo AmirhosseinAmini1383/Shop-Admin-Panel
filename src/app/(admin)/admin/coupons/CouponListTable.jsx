@@ -1,14 +1,40 @@
+import ConfirmDelete from "@/common/ConfirmDelete";
+import Modal from "@/common/Modal";
 import { couponListTableTHeads } from "@/constants/tableHeads";
+import { useRemoveCoupon } from "@/hooks/useCoupons";
 import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/numberFormatter";
 import toLocalDateShort from "@/utils/toLocalDateShort";
+import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { HiOutlineEye, HiOutlineTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 
 function CouponListTable({ coupons }) {
+  const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const queryClient = useQueryClient();
+  const { mutateAsync: removeCoupon, isPending } = useRemoveCoupon();
+
+  const removeCouponHandler = async (id) => {
+    try {
+      const { message } = await removeCoupon(id);
+      queryClient.invalidateQueries({ queryKey: ["get-coupons"] });
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  const handleDeleteClick = (coupon) => {
+    setSelectedProduct(coupon);
+    setOpen(true);
+  };
+
   return (
     <>
       {coupons.length > 0 ? (
@@ -64,14 +90,35 @@ function CouponListTable({ coupons }) {
                     <td className="table__td">
                       {toLocalDateShort(coupon.expireDate)}
                     </td>
-                    <td className="table__td font-bold text-lg">
+                    <td className="table__td">
                       <div className="flex items-center gap-x-4">
                         <Link href={`/admin/coupons/${coupon._id}`}>
                           <HiOutlineEye className="text-primary-900 w-5 h-5" />
                         </Link>
-                        <button>
+                        <button onClick={() => handleDeleteClick(coupon)}>
                           <HiOutlineTrash className="text-error w-5 h-5" />
                         </button>
+                        <Modal
+                          title="حذف کد تخفیف"
+                          open={open}
+                          onClose={() => setOpen(false)}
+                        >
+                          {selectedProduct && (
+                            <ConfirmDelete
+                              resourceName={selectedProduct.code}
+                              onConfirm={() => {
+                                removeCouponHandler(selectedProduct._id);
+                                setOpen(false);
+                                setSelectedProduct(null);
+                              }}
+                              onClose={() => {
+                                setOpen(false);
+                                setSelectedProduct(null);
+                              }}
+                              disabled={isPending}
+                            />
+                          )}
+                        </Modal>
                         <Link href={`/admin/coupons/edit/${coupon._id}`}>
                           <RiEdit2Line className="w-5 h-5  text-secondary-700" />
                         </Link>

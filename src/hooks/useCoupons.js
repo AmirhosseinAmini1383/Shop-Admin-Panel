@@ -2,6 +2,7 @@ import {
   addNewCouponApi,
   getAllCouponsApi,
   getOneCouponByIdApi,
+  removeCouponApi,
   updateCouponApi,
 } from "@/services/couponService";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -27,3 +28,6 @@ export const useGetOneCouponById = (id) =>
 
 export const useUpdateCoupon = () =>
   useMutation({ mutationFn: updateCouponApi });
+
+export const useRemoveCoupon = () =>
+  useMutation({ mutationFn: removeCouponApi });

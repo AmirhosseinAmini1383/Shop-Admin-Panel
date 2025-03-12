@@ -1,3 +1,5 @@
+"use client";
+
 import ConfirmDelete from "@/common/ConfirmDelete";
 import Modal from "@/common/Modal";
 import { productsListTHeads } from "@/constants/tableHeads";
@@ -8,7 +10,6 @@ import {
 } from "@/utils/numberFormatter";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { HiOutlineEye, HiOutlineTrash } from "react-icons/hi";
@@ -16,7 +17,8 @@ import { RiEdit2Line } from "react-icons/ri";
 
 function ProductsListTable({ products }) {
   const [open, setOpen] = useState(false);
-  const pathName = usePathname();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
   const queryClient = useQueryClient();
   const { isPending, mutateAsync: deleteProduct } = useDeleteProduct();
 
@@ -29,6 +31,12 @@ function ProductsListTable({ products }) {
       toast.error(error?.response?.data?.message);
     }
   };
+
+  const handleDeleteClick = (product) => {
+    setSelectedProduct(product);
+    setOpen(true);
+  };
+
   return (
     <>
       {products.length > 0 ? (
@@ -68,10 +76,10 @@ function ProductsListTable({ products }) {
                     </td>
                     <td className="table__td">
                       <div className="flex items-center gap-x-3">
-                        <Link href={`${pathName}/${product._id}`}>
+                        <Link href={`/admin/products/${product._id}`}>
                           <HiOutlineEye className="w-5 h-5 text-primary-900" />
                         </Link>
-                        <button onClick={() => setOpen(true)}>
+                        <button onClick={() => handleDeleteClick(product)}>
                           <HiOutlineTrash className="w-5 h-5 text-error" />
                         </button>
                         <Modal
@@ -79,14 +87,23 @@ function ProductsListTable({ products }) {
                           open={open}
                           onClose={() => setOpen(false)}
                         >
-                          <ConfirmDelete
-                            resourceName={product.title}
-                            onConfirm={() => removeProductHandler(product._id)}
-                            onClose={() => setOpen(false)}
-                            disabled={isPending}
-                          />
+                          {selectedProduct && (
+                            <ConfirmDelete
+                              resourceName={selectedProduct.title}
+                              onConfirm={() => {
+                                removeProductHandler(selectedProduct._id);
+                                setOpen(false);
+                                setSelectedProduct(null);
+                              }}
+                              onClose={() => {
+                                setOpen(false);
+                                setSelectedProduct(null);
+                              }}
+                              disabled={isPending}
+                            />
+                          )}
                         </Modal>
-                        <Link href={`${pathName}/edit/${product._id}`}>
+                        <Link href={`/admin/products/edit/${product._id}`}>
                           <RiEdit2Line className="w-5 h-5 text-secondary-700" />
                         </Link>
                       </div>
