@@ -1,4 +1,8 @@
 import { couponListTableTHeads } from "@/constants/tableHeads";
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "@/utils/numberFormatter";
 import toLocalDateShort from "@/utils/toLocalDateShort";
 import Link from "next/link";
 import { HiOutlineEye, HiOutlineTrash } from "react-icons/hi";
@@ -34,20 +38,29 @@ function CouponListTable({ coupons }) {
                         {coupon.type}
                       </span>
                     </td>
-                    <td className="table__td">{coupon.amount}</td>
+                    <td className="table__td">
+                      {toPersianNumbersWithComma(coupon.amount)}
+                    </td>
                     <td className="table__td">
                       <div className="space-y-2 flex flex-col items-start">
                         {coupon.productIds.map((p) => {
                           return (
-                            <span className="badge badge--secondary">
+                            <span
+                              key={p._id}
+                              className="badge badge--secondary"
+                            >
                               {p.title}
                             </span>
                           );
                         })}
                       </div>
                     </td>
-                    <td className="table__td">{coupon.usageCount}</td>
-                    <td className="table__td">{coupon.usageLimit}</td>
+                    <td className="table__td">
+                      {toPersianNumbers(coupon.usageCount)}
+                    </td>
+                    <td className="table__td">
+                      {toPersianNumbers(coupon.usageLimit)}
+                    </td>
                     <td className="table__td">
                       {toLocalDateShort(coupon.expireDate)}
                     </td>
