@@ -18,6 +18,7 @@ function CouponForm({
   expireDate,
   setExpireDate,
   isLoading,
+  defaultValue = "",
 }) {
   return (
     <div className="max-w-sm">
@@ -25,19 +26,19 @@ function CouponForm({
         <TextField
           label="کد"
           name="code"
-          value={formData.code}
+          value={formData.code || ""}
           onChange={onChangeFormData}
         />
         <TextField
           label="مقدار"
           name="amount"
-          value={formData.amount}
+          value={formData.amount || ""}
           onChange={onChangeFormData}
         />
         <TextField
           label="ظرفیت"
           name="usageLimit"
-          value={formData.usageLimit}
+          value={formData.usageLimit || ""}
           onChange={onChangeFormData}
         />
         <div>
@@ -72,6 +73,7 @@ function CouponForm({
             onChange={onChangeSelect}
             getOptionLabel={(option) => option.title}
             getOptionValue={(option) => option._id}
+            defaultValue={defaultValue}
           />
         </div>
         <div>

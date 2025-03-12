@@ -2,6 +2,7 @@ import {
   addNewCouponApi,
   getAllCouponsApi,
   getOneCouponByIdApi,
+  updateCouponApi,
 } from "@/services/couponService";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -23,3 +24,6 @@ export const useGetOneCouponById = (id) =>
     retry: false,
     refetchOnWindowFocus: true,
   });
+
+export const useUpdateCoupon = () =>
+  useMutation({ mutationFn: updateCouponApi });
